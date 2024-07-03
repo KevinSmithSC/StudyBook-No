@@ -1,0 +1,93 @@
+
+.container {
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas si no hay suficiente espacio */
+    color: black
+    
+  }
+
+  
+  .table-cell {
+    font-weight: bold; /* Agrega negrita al texto dentro de las celdas */
+}
+
+  .top-left {
+    position: relative;
+    margin: 10px;
+    display: flex; /* Usa flexbox */
+    align-items: center; /* Alinea verticalmente los elementos hijos */
+  }
+
+  .middle-text {
+    text-align: center;
+    margin-top: 9%;
+    transform: translateY(-20%);
+    transform: translateX(-10%);
+    padding: 5px;
+    width: 200px; /* Ancho estático deseado */
+    height: 50px;
+    }
+
+    .btnracep{
+        width: 100px; /* Ancho estático deseado */
+        height: 30px;
+        background-color: #7292CF;
+        border-radius: 20px;
+    }
+    .btnrecha{
+        width: 70px; /* Ancho estático deseado */
+        height: 30px;
+        background-color: #B14E2F;
+        border-radius: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        padding: 10px;
+    }
+    
+    .button-container .diva {
+      padding-right: 20px;
+      text-align: center;
+    }
+    .button-container button {
+        margin-right: 10px;
+        font-size: 16;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+      color: #212529;
+    
+      th,
+      td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+      }
+    
+      thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+      }
+    
+      tbody + tbody {
+        border-top: 2px solid #dee2e6;
+      }
+      
+      tr{
+        text-align: center;
+      }
+    
+      .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05); /* Color de la fila impar */
+      }
+    
+      .table-striped tbody tr:nth-of-type(even) {
+        background-color: rgba(255, 255, 255, 0.9); /* Color de la fila par */
+      }
+    }
+    

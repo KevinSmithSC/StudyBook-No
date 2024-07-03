@@ -1,0 +1,7 @@
+{
+  "name": "StudyBookAdmin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

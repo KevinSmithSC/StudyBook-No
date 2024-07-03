@@ -1,0 +1,41 @@
+#container {
+    text-align: center;
+    margin: auto;
+    width: 90%; /* Ajusta el ancho del contenedor según tus necesidades */
+  }
+  
+  ion-label,
+  ion-input,
+  ion-select,
+  ion-text,
+  ion-button {
+    margin-top: 10px;
+    font-size: 20px; /* Ajusta el tamaño de fuente según tus necesidades */
+  }
+  
+  
+  #container strong {
+    font-size: 34px;
+    line-height: 26px;
+  }
+  
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+  }
+
+  #container a {
+    text-decoration: none;
+  }
+  
+  #bottom-image {
+    display: block;
+    margin-top: 10px; /* Puedes ajustar el margen según sea necesario */
+    margin-bottom: 0px; /* Puedes ajustar el margen según sea necesario */
+    text-align: center; /* Alinear la imagen en el centro */
+  }
+  * {
+    font-family: 'Arial', sans-serif; /* Reemplaza 'TuFuentePreferida' con el nombre de la fuente que desees utilizar */
+  }

@@ -1,0 +1,31 @@
+<!-- src/app/pages/gestionreserva/gestionreserva.page.html -->
+<app-header title="Gestion de Reservas"></app-header>
+
+<ion-content>
+  <ion-card *ngIf="disabledSlots.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Sala</th>
+          <th>Fecha</th>
+          <th>Horario</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let slot of disabledSlots">
+          <td>{{ slot?.sala }}</td>
+          <td>{{ slot?.date }}</td>
+          <td>{{ slot?.timeSlot }}</td>
+          <td>
+            <ion-button *ngIf="slot?.disabled" color="danger" (click)="releaseSlot(slot?.uid)">Liberar</ion-button>
+            <ion-button *ngIf="!slot?.disabled" color="success" disabled>Habilitado</ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ion-card>
+  <ion-card *ngIf="disabledSlots.length === 0">
+    No hay salas deshabilitadas.
+  </ion-card>
+</ion-content>

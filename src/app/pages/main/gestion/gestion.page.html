@@ -1,0 +1,29 @@
+<app-header title="Gestión de Salas"></app-header>
+
+<ion-content>
+  <div id="container">
+    <img src="../assets/assetsmari/biblioteca.png" alt="Imagen">
+  </div>
+  <div>
+    <ion-item>
+      <ion-label>Selecciona una sala</ion-label>
+      <ion-select [(ngModel)]="selectedSala" (ionChange)="cambiarSala()">
+        <ion-select-option *ngFor="let sala of salas" [value]="sala.id">{{ sala.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div id="contenidoSala">
+    <!-- Aquí se actualizarán los datos dinámicamente -->
+    <div *ngIf="datosSala">
+      <div class="container5" *ngFor="let item of datosSalaItems">
+        <div class="contenedores">
+          <img class="imagen" [src]="item.icon" alt="Imagen" style="width: 60px; margin-right: 10px;">
+          <div class="subsection">
+            <h3 class="subtitulo">{{ item.titulo }}</h3>
+            <p class="texto">{{ item.valor }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

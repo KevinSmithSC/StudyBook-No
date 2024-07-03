@@ -1,0 +1,41 @@
+<app-header title="Reportes"></app-header>
+
+<ion-content>
+  <div class="filter-container">
+    <ion-item>
+      <ion-label>Ordenar por:</ion-label>
+      <ion-select [(ngModel)]="selectedOrder" (ionChange)="ordenarReservaciones()">
+        <ion-select-option value="sala">Sala</ion-select-option>
+        <ion-select-option value="date">Fecha</ion-select-option>
+        <ion-select-option value="horario">Horario</ion-select-option>
+        <ion-select-option value="students">Acompañantes</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <ion-item>
+    <ion-label>Descargar PDF:</ion-label>
+    <button type="button" class="btnrecha" (click)="imprimirPdf()">PDF</button>
+  </ion-item>
+
+  <ion-card *ngFor="let reservation of reservations">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Sala</th>
+          <th>Fecha</th>
+          <th>Horario</th>
+          <th>Acompañantes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ reservation.sala }}</td>
+          <td>{{ reservation.date }}</td>
+          <td>{{ reservation.horario }}</td>
+          <td>{{ reservation.students.join(', ') }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ion-card>
+</ion-content>

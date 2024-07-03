@@ -1,0 +1,62 @@
+#container {
+  text-align: center;
+  margin-bottom: 20px; /* Espacio entre la imagen y el siguiente contenedor */
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas si no hay suficiente espacio */
+}
+
+.container5 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas si no hay suficiente espacio */
+  margin-bottom: 10px;
+}
+
+
+.imagen{
+  position: absolute;
+  text-align: left;
+  margin-left: -260px;
+
+
+}
+.contenedores {
+  width: 350px; /* Ajusta el ancho del contenedor */
+  height: 100px; /* Ajusta la altura del contenedor */
+  background-color: #f0f0f0; /* Color de fondo para visualizar el tamaño del contenedor */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ccc; /* Opcional: añade un borde para visualizar el contenedor */
+  border-radius: 10px; /* Opcional: redondea las esquinas del contenedor */
+}
+
+
+.subsection{
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas si no hay suficiente espacio */
+}
+
+
+.subtitulo {
+  position: absolute;
+  font-size: 20px; /* Tamaño del subtítulo */
+  font-weight: bold; /* Negrita para el subtítulo */
+  color: #000080; /* Color del subtítulo */
+  margin-bottom: 80px; /* Espacio entre el subtítulo y su contenido */
+  margin-left: -80px;
+  margin-top: -30px;
+}
+
+.texto {
+  position: absolute;
+  text-align: center;
+  font-size: 18px; /* Tamaño de la letra para el subtexto */
+  color: #333; /* Color del subtexto */
+  margin-left: -40px;
+}

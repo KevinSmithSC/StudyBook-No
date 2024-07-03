@@ -1,0 +1,110 @@
+ion-content {
+  align-items: center;
+
+}
+
+ion-card-content{
+  text-align: center;
+  align-items: center;
+}
+
+.fondoC{
+    --background:  #F9F8F9;
+ 
+}
+
+.centro {
+  text-align: center;
+}
+.cabeceraimg {
+  position: absolute;
+  top: 0;
+}
+.subtitulos{
+  color: #3E4AA4;
+  text-align: center;
+}
+.azul{
+  --background: #3E4AA4;
+}
+
+.pmenu {
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold ;
+  color: rgb(13, 0, 255);
+  font-size: 40px;
+  margin-top: 0;
+}
+
+
+.classbotones{
+
+  align-items: center;
+  
+  justify-content: center;
+}
+
+.medio{
+  text-align: center;
+}
+
+ion-card {
+  --background: #E60027;
+}
+
+
+
+.but{
+  width: 350px;
+  height: 50px;
+  margin: 15px;
+  font-size: 20px;
+text-align: center;
+}
+
+
+
+ion-card-title{
+  color: #ffff;
+  font-size: 26px;
+  font-weight:bold;
+}
+
+.negrita{
+  font-weight:bold
+}
+
+ion-card-subtitle{
+  text-align: justify;
+  font-size: 16px;
+  color: #ffff;
+}
+
+/* footer.component.scss */
+
+
+/* swimper*/
+
+.ambientes{
+  width: 400px;
+  height:  200%;
+}
+.card{
+  
+  height:  100px;
+}
+swiper-slide {
+
+  display: flex;
+  position: relative;
+
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  
+  justify-content: center;
+
+  text-align: center;
+  box-sizing: border-box;
+}

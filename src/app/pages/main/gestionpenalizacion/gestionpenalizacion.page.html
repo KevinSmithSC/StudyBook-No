@@ -1,0 +1,10 @@
+<app-header title="Gestion de Penalización"></app-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-label>{{ user.name }}</ion-label>
+      <button (click)="liberarUsuario(user.email)" class="btnacep">Liberar</button>
+    </ion-item>
+  </ion-list>
+</ion-content>
