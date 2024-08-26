@@ -1,7 +1,7 @@
 export interface  User {
-    uid: string,
-    email: string,
-    clave: string
+    uidsb: string,
+    emailsb: string,
+    clavesb: string
 
 }
 

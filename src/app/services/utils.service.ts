@@ -13,30 +13,30 @@ export class UtilsService {
 
 
   // ==============LOAD===========
-  loading() {
+  loadingsb() {
     return this.loadingCtrl.create({ spinner: 'crescent' })
   }
 
   //========TOAST======
-  async presentToast(opts?: ToastOptions) {
+  async presentToastsb(opts?: ToastOptions) {
     const toast = await this.toastCtrl.create(opts);
     toast.present();
   }
 
 
   //====== URL
-  routerLink(url: string){
+  routerLinksb(url: string){
   return this.router.navigateByUrl(url);
   }
 
 ///====== storage
 
-saveInLocalStorage(key: string, value: any){
+saveInLocalStoragesb(key: string, value: any){
   return localStorage.setItem(key, JSON.stringify(value))
 }
 
 //==================000get
-getFromLocalStorage(key: string){
+getFromLocalStoragesb(key: string){
   return JSON.parse(localStorage.getItem(key))
 }
 

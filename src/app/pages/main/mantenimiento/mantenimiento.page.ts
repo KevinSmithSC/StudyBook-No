@@ -10,15 +10,15 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./mantenimiento.page.scss'],
 })
 export class MantenimientoPage implements OnDestroy {
-  form: FormGroup;
-  numbers: number[] = [];
-  utilsSvc = inject(UtilsService);
-  availableOptions = ['Disponible', 'Ocupado'];
-  salaSubscription: Subscription;
-  isResetting = false; // Indicador de restablecimiento
+  formsb: FormGroup;
+  numberssb: number[] = [];
+  utilsSvcsb = inject(UtilsService);
+  availableOptionssb = ['Disponible', 'Ocupado'];
+  salaSubscriptionsb: Subscription;
+  isResettingsb = false; // Indicador de restablecimiento
 
   constructor(private formBuilder: FormBuilder, private firebaseService: FirebaseService) {
-    this.form = this.formBuilder.group({
+    this.formsb = this.formBuilder.group({
       encargado: ['', Validators.required],
       idsala: ['', [Validators.required, Validators.min(1), Validators.max(11)]],
       computadora: ['', [Validators.required, Validators.min(0), Validators.max(1)]],
@@ -31,49 +31,49 @@ export class MantenimientoPage implements OnDestroy {
     });
 
     for (let i = 1; i <= 11; i++) {
-      this.numbers.push(i);
+      this.numberssb.push(i);
     }
 
     // Escuchar cambios en el campo idsala
-    this.form.get('idsala').valueChanges.subscribe((value) => {
-      if (value && !this.isResetting) { // Solo cargar datos si no estamos restableciendo
+    this.formsb.get('idsala').valueChanges.subscribe((value) => {
+      if (value && !this.isResettingsb) { // Solo cargar datos si no estamos restableciendo
         console.log(`Cambio detectado en idsala: ${value}`);
-        this.loadSalaData(value.toString());
+        this.loadSalaDatasb(value.toString());
       }
     });
   }
 
-  loadSalaData(idsala: string) {
+  loadSalaDatasb(idsala: string) {
     // Cancelar la suscripción anterior si existe
-    if (this.salaSubscription) {
-      this.salaSubscription.unsubscribe();
+    if (this.salaSubscriptionsb) {
+      this.salaSubscriptionsb.unsubscribe();
     }
 
     // Obtener los datos de la sala desde Firestore y actualizar el formulario
-    this.salaSubscription = this.firebaseService.getSalaById(idsala).subscribe(data => {
+    this.salaSubscriptionsb = this.firebaseService.getSalaByIdsb(idsala).subscribe(data => {
       if (data) {
         console.log(`Datos de sala cargados: `, data);
-        this.form.patchValue(data);
+        this.formsb.patchValue(data);
       }
     });
   }
 
-  async submit() {
-    if (this.form.valid) {
-      const idsala = this.form.value.idsala.toString();
+  async submitsb() {
+    if (this.formsb.valid) {
+      const idsala = this.formsb.value.idsala.toString();
 
       // Elimina idsala del objeto updatedData
-      const { idsala: _, ...updatedData } = this.form.value;
+      const { idsala: _, ...updatedData } = this.formsb.value;
 
       try {
         // Desactivar la suscripción antes de actualizar
-        if (this.salaSubscription) {
-          this.salaSubscription.unsubscribe();
+        if (this.salaSubscriptionsb) {
+          this.salaSubscriptionsb.unsubscribe();
         }
 
-        await this.firebaseService.updateDocument('mantenimiento', idsala, updatedData);
+        await this.firebaseService.updateDocumentsb('mantenimiento', idsala, updatedData);
         console.log('Datos actualizados exitosamente en Firestore');
-        this.resetForm(); // Restablece el formulario después de actualizar
+        this.resetFormsb(); // Restablece el formulario después de actualizar
       } catch (error) {
         console.error('Error al actualizar los datos en Firestore:', error);
       }
@@ -82,16 +82,16 @@ export class MantenimientoPage implements OnDestroy {
     }
   }
 
-  resetForm() {
+  resetFormsb() {
     console.log('Restableciendo el formulario...');
-    this.isResetting = true; // Indicador de restablecimiento
+    this.isResettingsb = true; // Indicador de restablecimiento
 
-    this.form.reset(); // Restablece el estado del formulario
-    this.form.markAsPristine(); // Marca el formulario como no modificado
-    this.form.markAsUntouched(); // Marca el formulario como no tocado
+    this.formsb.reset(); // Restablece el estado del formulario
+    this.formsb.markAsPristine(); // Marca el formulario como no modificado
+    this.formsb.markAsUntouched(); // Marca el formulario como no tocado
 
     // Inicializa algún valor por defecto después de resetear
-    this.form.setValue({
+    this.formsb.setValue({
       encargado: '',
       idsala: '',
       computadora: '',
@@ -103,13 +103,13 @@ export class MantenimientoPage implements OnDestroy {
       detalle: ''
     });
 
-    console.log('Formulario restablecido:', this.form.value);
-    this.isResetting = false; // Restablecimiento completado
+    console.log('Formulario restablecido:', this.formsb.value);
+    this.isResettingsb = false; // Restablecimiento completado
   }
 
   ngOnDestroy() {
-    if (this.salaSubscription) {
-      this.salaSubscription.unsubscribe();
+    if (this.salaSubscriptionsb) {
+      this.salaSubscriptionsb.unsubscribe();
     }
   }
 }

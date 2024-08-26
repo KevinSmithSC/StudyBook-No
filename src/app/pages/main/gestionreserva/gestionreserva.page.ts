@@ -8,18 +8,18 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./gestionreserva.page.scss'],
 })
 export class GestionreservaPage implements OnInit {
-  disabledSlots: any[] = [];
-  firebaseSvc = inject(FirebaseService);
-  utilsSvc = inject(UtilsService);
+  disabledSlotssb: any[] = [];
+  firebaseSvcsb = inject(FirebaseService);
+  utilsSvcsb = inject(UtilsService);
 
   constructor() { }
 
   async ngOnInit() {
-    const loading = await this.utilsSvc.loading();
+    const loading = await this.utilsSvcsb.loadingsb();
     await loading.present();
-    this.firebaseSvc.getDisabledSlots().subscribe(slots => {
+    this.firebaseSvcsb.getDisabledSlotssb().subscribe(slots => {
       console.log('Disabled slots:', slots); // Verifica aquí los datos que recibes de Firestore
-      this.disabledSlots = slots
+      this.disabledSlotssb = slots
         .filter(slot => slot.payload.doc.data().disabled === true)
         .map(slot => ({
           uid: slot.payload.doc.id,
@@ -33,10 +33,10 @@ export class GestionreservaPage implements OnInit {
     });
   }
 
-  releaseSlot(uid: string) {
-    this.firebaseSvc.updateDisabledSlotStatus(uid, false).then(() => {
-      this.disabledSlots = this.disabledSlots.map(slot => 
-        slot.uid === uid ? { ...slot, disabled: false } : slot
+  releaseSlotsb(uidsb: string) {
+    this.firebaseSvcsb.updateDisabledSlotStatussb(uidsb, false).then(() => {
+      this.disabledSlotssb = this.disabledSlotssb.map(slot => 
+        slot.uid === uidsb ? { ...slot, disabled: false } : slot
       );
     }).catch(error => {
       console.error('Error updating slot status: ', error);

@@ -24,7 +24,7 @@ export class CustomInputComponent  implements OnInit {
     if(this.type == 'password') this.isPassword = true;
   }
 
-  showOrHidePassword(){
+  showOrHidePasswordsb(){
     this.hide = !this.hide;
 
     if(this.hide) this.type = 'password';

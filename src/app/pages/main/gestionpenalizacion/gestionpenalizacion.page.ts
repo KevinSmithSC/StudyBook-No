@@ -7,35 +7,33 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./gestionpenalizacion.page.scss'],
 })
 export class GestionpenalizacionPage implements OnInit {
-  users: any[];
+  userssb: any[];
 
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
-    this.getDisabledUsers();
+    this.getDisabledUserssb();
   }
 
-  getDisabledUsers() {
-    this.firebaseService.getDisabledUsers().subscribe(
+  getDisabledUserssb() {
+    this.firebaseService.getDisabledUserssb().subscribe(
       (users) => {
-        this.users = users;
-        console.log('Usuarios con disabled true:', this.users);
+        this.userssb = users;
+        console.log('Usuarios desactivados:', this.userssb);
       },
       (error) => {
-        console.error('Error al obtener usuarios con disabled true:', error);
+        console.error('Error al obtener usuarios desactivados:', error);
       }
     );
   }
 
-  liberarUsuario(email: string) {
-    this.firebaseService.updateUserDisabledStatus(email, false)
+  liberarUsuariosb(email: string) {
+    this.firebaseService.updateUserDisabledStatussb(email, false)
       .then(() => {
         console.log('Estado de usuario actualizado correctamente.');
-        // Puedes agregar más lógica aquí si es necesario
       })
       .catch((error) => {
         console.error('Error al actualizar el estado de usuario:', error);
-        // Manejar el error según sea necesario
       });
   }
 }

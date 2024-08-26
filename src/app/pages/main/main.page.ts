@@ -10,30 +10,30 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class MainPage implements OnInit {
 
-  pages = [
-    { title: 'Inicio', url: '/main/home', icon: 'home-outline' },
-    { title: 'Reportes', url: '/main/reportes', icon: 'reader-outline' },
-    { title: 'Mantenimiento', url: '/main/mantenimiento', icon: 'construct-outline' },
-    { title: 'Gestión de salas', url: '/main/gestion', icon: 'file-tray-full-outline' },
-    { title: 'Gestión de Reservas', url: '/main/gestionreserva', icon: 'file-tray-full-outline' },
-    { title: 'Gestión de Penalización', url: '/main/gestionpenalizacion', icon: 'file-tray-full-outline' }
+  pagessb = [
+    { titlesb: 'Inicio', urlsb: '/main/home'},
+    { titlesb: 'Reportes', urlsb: '/main/reportes'},
+    { titlesb: 'Mantenimiento', urlsb: '/main/mantenimiento'},
+    { titlesb: 'Gestión de salas', urlsb: '/main/gestion'},
+    { titlesb: 'Gestión de Reservas', urlsb: '/main/gestionreserva'},
+    { titlesb: 'Gestión de Penalización', urlsb: '/main/gestionpenalizacion'}
 
   ]
 
-  router = inject(Router);
-  firebaseSvc = inject(FirebaseService);
-  utilsSvc = inject(UtilsService);
-  curretPath: String = '';
+  routersb = inject(Router);
+  firebaseSvcsb = inject(FirebaseService);
+  utilsSvcsb = inject(UtilsService);
+  curretPathsb: String = '';
 
 
   ngOnInit() {
-    this.router.events.subscribe((event: any) => {
-      if (event?.url) this.curretPath = event.url;
+    this.routersb.events.subscribe((event: any) => {
+      if (event?.url) this.curretPathsb = event.url;
     })
   }
 
-  singnOut() {
-    this.firebaseSvc.signOut();
+  singnOutsb() {
+    this.firebaseSvcsb.signOutsb();
   }
 
 }

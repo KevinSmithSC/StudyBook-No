@@ -4,7 +4,7 @@
   <div class="filter-container">
     <ion-item>
       <ion-label>Ordenar por:</ion-label>
-      <ion-select [(ngModel)]="selectedOrder" (ionChange)="ordenarReservaciones()">
+      <ion-select [(ngModel)]="selectedOrdersb" (ionChange)="ordenarReservacionessb()">
         <ion-select-option value="sala">Sala</ion-select-option>
         <ion-select-option value="date">Fecha</ion-select-option>
         <ion-select-option value="horario">Horario</ion-select-option>
@@ -13,12 +13,8 @@
     </ion-item>
   </div>
 
-  <ion-item>
-    <ion-label>Descargar PDF:</ion-label>
-    <button type="button" class="btnrecha" (click)="imprimirPdf()">PDF</button>
-  </ion-item>
 
-  <ion-card *ngFor="let reservation of reservations">
+  <ion-card *ngFor="let reservationsb of reservationssb">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -30,10 +26,10 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ reservation.sala }}</td>
-          <td>{{ reservation.date }}</td>
-          <td>{{ reservation.horario }}</td>
-          <td>{{ reservation.students.join(', ') }}</td>
+          <td>{{ reservationsb.sala }}</td>
+          <td>{{ reservationsb.date }}</td>
+          <td>{{ reservationsb.horario }}</td>
+          <td>{{ reservationsb.students.join(', ') }}</td>
         </tr>
       </tbody>
     </table>

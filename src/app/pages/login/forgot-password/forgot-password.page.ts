@@ -12,29 +12,29 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class ForgotPasswordPage implements OnInit {
 
-  form = new FormGroup({
+  formsb = new FormGroup({
 
-    email: new FormControl('', [Validators.required, Validators.email]),
+    emailsb: new FormControl('', [Validators.required, Validators.email]),
     
   })
 
-firebaseSvc = inject (FirebaseService);
-utilsSvc= inject(UtilsService)
+firebaseSvcsb = inject (FirebaseService);
+utilsSvcsb= inject(UtilsService)
 
   ngOnInit() {
   }
 
-  async submit(){
-    if (this.form.valid){
+  async submitsb(){
+    if (this.formsb.valid){
       
-      const loading = await this.utilsSvc.loading();
-      await loading.present();
+      const loadingsb = await this.utilsSvcsb.loadingsb();
+      await loadingsb.present();
 
 
 
-      this.firebaseSvc.sendRecoveryEmail(this.form.value.email).then(res => {
+      this.firebaseSvcsb.sendRecoveryEmailsb(this.formsb.value.emailsb).then(res => {
 
-        this.utilsSvc.presentToast({
+        this.utilsSvcsb.presentToastsb({
           message: "Correo enviado correctamente",
           duration: 1500,
           color: "primary",
@@ -42,14 +42,14 @@ utilsSvc= inject(UtilsService)
           icon: "mail-outline"
         })
 
-        this.utilsSvc.routerLink('/login');
-        this.form.reset();
+        this.utilsSvcsb.routerLinksb('/login');
+        this.formsb.reset();
 
       }).catch(error => {
 
         console.log(error);
 
-        this.utilsSvc.presentToast({
+        this.utilsSvcsb.presentToastsb({
           message: "Correo o contraseña incorrecta",
           duration: 2500,
           color: "primary",
@@ -59,7 +59,7 @@ utilsSvc= inject(UtilsService)
 
       }).finally(() => {
 
-        loading.dismiss();
+        loadingsb.dismiss();
 
       })
     }

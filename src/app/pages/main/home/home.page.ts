@@ -35,6 +35,6 @@ export class HomePage implements OnInit {
 
   // Cerrar sesion
   signOut() {
-    this.firebaseSvc.signOut();
+    this.firebaseSvc.signOutsb();
   }
 }

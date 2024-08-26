@@ -3,17 +3,17 @@
   <div id="container">
     <ion-card>
       <ion-card-content>
-        <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+        <form *ngIf="formsb" [formGroup]="formsb" (ngSubmit)="submitsb()" (keypress.enter)="submitsb()">
           <!-- Número de Sala de Biblioteca -->
           <ion-item>
             <ion-label>Número de Sala</ion-label>
             <ion-select formControlName="idsala">
-              <ion-select-option *ngFor="let num of numbers" [value]="num">{{num}}</ion-select-option>
+              <ion-select-option *ngFor="let num of numberssb" [value]="num">{{num}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="form.get('idsala')?.errors && form.get('idsala')?.touched">
-            <ion-text color="danger" *ngIf="form.get('idsala')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
-            <ion-text color="danger" *ngIf="form.get('idsala')?.errors?.['min']" style="font-size: 1em">Debe empezar desde el 1</ion-text>
+          <ion-item *ngIf="formsb.get('idsala')?.errors && formsb.get('idsala')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('idsala')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+            <ion-text color="danger" *ngIf="formsb.get('idsala')?.errors?.['min']" style="font-size: 1em">Debe empezar desde el 1</ion-text>
           </ion-item>
 
           <!-- Nombre del encargado de Biblioteca -->
@@ -21,8 +21,8 @@
             <ion-label position="stacked" style="font-size: 1.4em">Encargado</ion-label>
             <ion-input formControlName="encargado" type="text" style="font-size: 1.2em"></ion-input>
           </ion-item>
-          <ion-item *ngIf="form.get('encargado')?.errors && form.get('encargado')?.touched">
-            <ion-text color="danger" *ngIf="form.get('encargado')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+          <ion-item *ngIf="formsb.get('encargado')?.errors && formsb.get('encargado')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('encargado')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
           </ion-item>
 
           <!-- Disponibilidad de los Equipos -->
@@ -32,62 +32,62 @@
           <ion-item>
             <ion-label style="margin-left: 20px;">Computadora</ion-label>
             <ion-select formControlName="computadora">
-              <ion-select-option *ngFor="let num of numbers" [value]="num">{{num}}</ion-select-option>
+              <ion-select-option *ngFor="let num of numberssb" [value]="num">{{num}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="form.get('computadora')?.errors && form.get('computadora')?.touched">
-            <ion-text color="danger" *ngIf="form.get('computadora')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
-            <ion-text color="danger" *ngIf="form.get('computadora')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 1</ion-text>
+          <ion-item *ngIf="formsb.get('computadora')?.errors && formsb.get('computadora')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('computadora')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+            <ion-text color="danger" *ngIf="formsb.get('computadora')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 1</ion-text>
           </ion-item>
           <ion-item>
             <ion-label style="margin-left: 20px;">Pizarra</ion-label>
             <ion-select formControlName="pizarra">
-              <ion-select-option *ngFor="let num of numbers" [value]="num">{{num}}</ion-select-option>
+              <ion-select-option *ngFor="let num of numberssb" [value]="num">{{num}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="form.get('pizarra')?.errors && form.get('pizarra')?.touched">
-            <ion-text color="danger" *ngIf="form.get('pizarra')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
-            <ion-text color="danger" *ngIf="form.get('pizarra')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 5</ion-text>
+          <ion-item *ngIf="formsb.get('pizarra')?.errors && formsb.get('pizarra')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('pizarra')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+            <ion-text color="danger" *ngIf="formsb.get('pizarra')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 5</ion-text>
           </ion-item>
           <ion-item>
             <ion-label style="margin-left: 20px;">Mesa</ion-label>
             <ion-select formControlName="mesa">
-              <ion-select-option *ngFor="let num of numbers" [value]="num">{{num}}</ion-select-option>
+              <ion-select-option *ngFor="let num of numberssb" [value]="num">{{num}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="form.get('mesa')?.errors && form.get('mesa')?.touched">
-            <ion-text color="danger" *ngIf="form.get('mesa')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
-            <ion-text color="danger" *ngIf="form.get('mesa')?.errors?.['max']">La cantidad máxima debe ser 3</ion-text>
+          <ion-item *ngIf="formsb.get('mesa')?.errors && formsb.get('mesa')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('mesa')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+            <ion-text color="danger" *ngIf="formsb.get('mesa')?.errors?.['max']">La cantidad máxima debe ser 3</ion-text>
           </ion-item>
           <ion-item>
             <ion-label style="margin-left: 20px;">Sillas</ion-label>
             <ion-select formControlName="sillas">
-              <ion-select-option *ngFor="let num of numbers" [value]="num">{{num}}</ion-select-option>
+              <ion-select-option *ngFor="let num of numberssb" [value]="num">{{num}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="form.get('sillas')?.errors && form.get('sillas')?.touched">
-            <ion-text color="danger" *ngIf="form.get('sillas')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
-            <ion-text color="danger" *ngIf="form.get('sillas')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 6</ion-text>
+          <ion-item *ngIf="formsb.get('sillas')?.errors && formsb.get('sillas')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('sillas')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+            <ion-text color="danger" *ngIf="formsb.get('sillas')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 6</ion-text>
           </ion-item>
           <ion-item>
             <ion-label style="margin-left: 20px;">Plumón</ion-label>
             <ion-select formControlName="plumon">
-              <ion-select-option *ngFor="let num of numbers" [value]="num">{{num}}</ion-select-option>
+              <ion-select-option *ngFor="let num of numberssb" [value]="num">{{num}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="form.get('plumon')?.errors && form.get('plumon')?.touched">
-            <ion-text color="danger" *ngIf="form.get('plumon')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
-            <ion-text color="danger" *ngIf="form.get('plumon')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 5</ion-text>
+          <ion-item *ngIf="formsb.get('plumon')?.errors && formsb.get('plumon')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('plumon')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+            <ion-text color="danger" *ngIf="formsb.get('plumon')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 5</ion-text>
           </ion-item>
           <ion-item>
             <ion-label style="margin-left: 20px;">Mota</ion-label>
             <ion-select formControlName="mota">
-              <ion-select-option *ngFor="let num of numbers" [value]="num">{{num}}</ion-select-option>
+              <ion-select-option *ngFor="let num of numberssb" [value]="num">{{num}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="form.get('mota')?.errors && form.get('mota')?.touched">
-            <ion-text color="danger" *ngIf="form.get('mota')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
-            <ion-text color="danger" *ngIf="form.get('mota')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 3</ion-text>
+          <ion-item *ngIf="formsb.get('mota')?.errors && formsb.get('mota')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('mota')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+            <ion-text color="danger" *ngIf="formsb.get('mota')?.errors?.['max']" style="font-size: 1em">La cantidad máxima debe ser 3</ion-text>
           </ion-item>
 
           <!-- Detalle -->
@@ -104,13 +104,13 @@
               </ion-item>
             </ion-radio-group>
           </ion-item>
-          <ion-item *ngIf="form.get('detalle')?.errors && form.get('detalle')?.touched">
-            <ion-text color="danger" *ngIf="form.get('detalle')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
+          <ion-item *ngIf="formsb.get('detalle')?.errors && formsb.get('detalle')?.touched">
+            <ion-text color="danger" *ngIf="formsb.get('detalle')?.errors?.['required']" style="font-size: 1em">Este campo es requerido</ion-text>
           </ion-item>
 
           <!-- Botón de envío -->
-          <ion-button expand="block" type="submit" [disabled]="form.invalid" color="danger">Actualizar</ion-button>
-          <img src="assets/assetsJennifer/icon/imagen0.png" alt="Imagen" id="bottom-image">
+          <ion-button expand="block" type="submit" [disabled]="formsb.invalid" color="danger">Actualizar</ion-button>
+        
         </form>
       </ion-card-content>
     </ion-card>

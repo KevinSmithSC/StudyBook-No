@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import {User} from 'src/app/model/user.model';
+import { User } from 'src/app/model/user.model';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -11,36 +11,35 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class LoginPage implements OnInit {
 
-  form = new FormGroup({
+  formsb = new FormGroup({
 
-    email: new FormControl('', [Validators.required, Validators.email]),
-    clave: new FormControl('', [Validators.required])
-    
+    emailsb: new FormControl('', [Validators.required, Validators.email]),
+    clavesb: new FormControl('', [Validators.required])
+
   })
 
-firebaseSvc = inject (FirebaseService);
-utilsSvc= inject(UtilsService)
+  firebaseSvcsb = inject(FirebaseService);
+  utilsSvcsb = inject(UtilsService)
 
   ngOnInit() {
   }
 
-  async submit(){
-    if (this.form.valid){
-      
-      const loading = await this.utilsSvc.loading();
+  async submitsb() {
+    if (this.formsb.valid) {
+
+      const loading = await this.utilsSvcsb.loadingsb();
       await loading.present();
 
 
+      this.firebaseSvcsb.sigInsb(this.formsb.value as User).then(res => {
 
-      this.firebaseSvc.sigIn(this.form.value as User).then(res => {
-
-      this.getUserInfo(res.user.uid);
+        this.getUserInfosb(res.user.uid);
 
       }).catch(error => {
 
         console.log(error);
 
-        this.utilsSvc.presentToast({
+        this.utilsSvcsb.presentToastsb({
           message: "Correo o contraseña incorrecta",
           duration: 2500,
           color: "primary",
@@ -55,46 +54,45 @@ utilsSvc= inject(UtilsService)
       })
     }
 
-}
+  }
 
- async getUserInfo(uid: string){
-  if (this.form.valid){
-    
-    const loading = await this.utilsSvc.loading();
-    await loading.present();
+  async getUserInfosb(uid: string) {
+    if (this.formsb.valid) {
 
-    let path = `users/${uid}`;
+      const loadingsb = await this.utilsSvcsb.loadingsb();
+      await loadingsb.present();
 
-    this.firebaseSvc.getDocument(path).then((user: User ) => {
+      let path = `users/${uid}`;
 
-      this.utilsSvc.saveInLocalStorage('user', user);
-      this.utilsSvc.routerLink('/main/home');
-      this.form.reset();
+      this.firebaseSvcsb.getDocumentsb(path).then((user: User) => {
+
+        this.utilsSvcsb.saveInLocalStoragesb('user', user);
+        this.utilsSvcsb.routerLinksb('/main/home');
+        this.formsb.reset();
 
         // BANNER
-      this.utilsSvc.presentToast({
-        message: `Te damos la bienvenida`,
-        duration: 1500,
-        color: 'primary',
-        position: 'bottom',
-        icon: 'person-circle-outline'
+        this.utilsSvcsb.presentToastsb({
+          message: `Te damos la bienvenida`,
+          duration: 1500,
+          color: 'primary',
+          position: 'bottom',
+        })
+
+      }).catch(error => {
+        console.log(error);
+
+        this.utilsSvcsb.presentToastsb({
+          message: error.message,
+          duration: 2000,
+          color: 'primary',
+          position: 'bottom',
+          icon: 'alert-circle-outline'
+        })
+
+      }).finally(() => {
+        loadingsb.dismiss();
       })
-
-    }).catch(error => {
-      console.log(error);
-
-      this.utilsSvc.presentToast({
-        message: error.message,
-        duration: 2000,
-        color:'primary',
-        position: 'bottom',
-        icon:'alert-circle-outline'
-      })
-
-    }).finally(() => {
-      loading.dismiss();
-    })
+    }
   }
-}
 
 }

@@ -2,7 +2,7 @@
 <app-header title="Gestion de Reservas"></app-header>
 
 <ion-content>
-  <ion-card *ngIf="disabledSlots.length > 0">
+  <ion-card *ngIf="disabledSlotssb.length > 0">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -13,19 +13,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let slot of disabledSlots">
+        <tr *ngFor="let slot of disabledSlotssb">
           <td>{{ slot?.sala }}</td>
           <td>{{ slot?.date }}</td>
           <td>{{ slot?.timeSlot }}</td>
           <td>
-            <ion-button *ngIf="slot?.disabled" color="danger" (click)="releaseSlot(slot?.uid)">Liberar</ion-button>
+            <ion-button *ngIf="slot?.disabled" color="danger" (click)="releaseSlotsb(slot?.uid)">Liberar</ion-button>
             <ion-button *ngIf="!slot?.disabled" color="success" disabled>Habilitado</ion-button>
           </td>
         </tr>
       </tbody>
     </table>
   </ion-card>
-  <ion-card *ngIf="disabledSlots.length === 0">
+  <ion-card *ngIf="disabledSlotssb.length === 0">
     No hay salas deshabilitadas.
   </ion-card>
 </ion-content>

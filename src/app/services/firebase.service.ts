@@ -18,33 +18,33 @@ export class FirebaseService {
   utilsSvc = inject(UtilsService);
 
   // =============ACCEDER
-  sigIn(user: User) {
-    return signInWithEmailAndPassword(getAuth(), user.email, user.clave);
+  sigInsb(user: User) {
+    return signInWithEmailAndPassword(getAuth(), user.emailsb, user.clavesb);
   }
 
     //=========RESTABLECER CONTRASEÑA=========
-sendRecoveryEmail(email: string){
+sendRecoveryEmailsb(email: string){
   return sendPasswordResetEmail(getAuth(), email)
   }
 
   // BD
-  setDocument(path: string, data: any) {
+  setDocumentsb(path: string, data: any) {
     return setDoc(doc(getFirestore(), path), data);
   }
 
-  async getDocument(path: string) {
+  async getDocumentsb(path: string) {
     return (await getDoc(doc(getFirestore(), path))).data();
   }
 
   //==================CERRAR SESION========
-  signOut() {
+  signOutsb() {
     getAuth().signOut();
     localStorage.removeItem('user');
-    this.utilsSvc.routerLink('/login')
+    this.utilsSvc.routerLinksb('/login')
   }
 
   // Método para actualizar un documento en Firestore
-  async updateDocument(collection: string, docId: string, newData: any) {
+  async updateDocumentsb(collection: string, docId: string, newData: any) {
     try {
       const docRef = doc(getFirestore(), collection, docId);
       await updateDoc(docRef, newData);
@@ -56,7 +56,7 @@ sendRecoveryEmail(email: string){
   }
 
   // =========== Obtener los reportes =============
-  async getAllReservations() {
+  async getAllReservationssb() {
     const q = query(
       collection(getFirestore(), 'reservations'),
       orderBy('sala', 'asc') // Ordenar por fecha en orden ascendente
@@ -66,21 +66,21 @@ sendRecoveryEmail(email: string){
   }
 
   // =========== Obtener datos de salas ==============
-  getSalasMantenimiento(): Observable<any[]> {
+  getSalasMantenimientosb(): Observable<any[]> {
     return this.firestore.collection('mantenimiento').valueChanges({ idField: 'id' });
   }
 
-  getSalaById(id: string): Observable<any> {
+  getSalaByIdsb(id: string): Observable<any> {
     return this.firestore.collection('mantenimiento').doc(id).valueChanges();
   }
 
 
   // ================== Gestion reservadas ======================
-  getDisabledSlots(): Observable<any[]> {
+  getDisabledSlotssb(): Observable<any[]> {
     return this.firestore.collection('disabledSlots').snapshotChanges();
   }
 
-  updateDisabledSlotStatus(uid: string, status: boolean): Promise<void> {
+  updateDisabledSlotStatussb(uid: string, status: boolean): Promise<void> {
     return this.firestore.collection('disabledSlots').doc(uid).update({ disabled: status });
   }
 
@@ -88,7 +88,7 @@ sendRecoveryEmail(email: string){
 
   // ========================= Gestión de penalización =============================================
  // Obtener todos los usuarios con disabled = true en tiempo real
- getDisabledUsers(): Observable<any[]> {
+ getDisabledUserssb(): Observable<any[]> {
   return this.firestore.collection('users', ref => ref.where('disabled', '==', true))
     .snapshotChanges().pipe(
       map(actions => {
@@ -101,7 +101,7 @@ sendRecoveryEmail(email: string){
     );
 }
 
-updateUserDisabledStatus(email: string, disabled: boolean): Promise<void> {
+updateUserDisabledStatussb(email: string, disabled: boolean): Promise<void> {
   return this.firestore.collection('users', ref => ref.where('email', '==', email))
     .get().toPromise()
     .then(querySnapshot => {

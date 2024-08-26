@@ -11,98 +11,43 @@ import { orderBy } from 'firebase/firestore';
 })
 export class ReportesPage implements OnInit {
 
-  utilsSvc= inject(UtilsService)
+  utilsSvcsb= inject(UtilsService)
 
-  reservations: any[] = [];
-  selectedOrder: string = 'sala';  // Default order by date
+  reservationssb: any[] = [];
+  selectedOrdersb: string = 'sala';  // Default order by date
 
   constructor(private firebaseService: FirebaseService) {
   }
 
   async ngOnInit() {
-    await this.loadData();
+    await this.loadDatasb();
   }
 
-  async loadData() {
-    const loading = await this.utilsSvc.loading();
+  async loadDatasb() {
+    const loading = await this.utilsSvcsb.loadingsb();
     await loading.present();
-    this.reservations = await this.firebaseService.getAllReservations();
-    this.ordenarReservaciones();
+    this.reservationssb = await this.firebaseService.getAllReservationssb();
+    this.ordenarReservacionessb();
     loading.dismiss();
   }
 
-  ordenarReservaciones() {
-    if (this.selectedOrder === 'sala') {
-      this.reservations.sort((a, b) => this.compareSala(a.sala, b.sala));
-    } else if (this.selectedOrder === 'date') {
-      this.reservations.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    } else if (this.selectedOrder === 'students') {
-      this.reservations.sort((a, b) => a.students.join(', ').localeCompare(b.students.join(', ')));
-    } else if (this.selectedOrder === 'horario') {
-      this.reservations.sort((a, b) => a.horario.localeCompare(b.horario));
+  ordenarReservacionessb() {
+    if (this.selectedOrdersb === 'sala') {
+      this.reservationssb.sort((a, b) => this.compareSalasb(a.sala, b.sala));
+    } else if (this.selectedOrdersb === 'date') {
+      this.reservationssb.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    } else if (this.selectedOrdersb === 'students') {
+      this.reservationssb.sort((a, b) => a.students.join(', ').localeCompare(b.students.join(', ')));
+    } else if (this.selectedOrdersb === 'horario') {
+      this.reservationssb.sort((a, b) => a.horario.localeCompare(b.horario));
     }
   }
   
-  compareSala(salaA: string, salaB: string): number {
+  compareSalasb(salaAsb: string, salaBsb: string): number {
     // Extraer el número de la cadena (asumiendo que siempre es "Sala " seguido de un número)
-    const numA = parseInt(salaA.substr(5));
-    const numB = parseInt(salaB.substr(5));
+    const numAsb = parseInt(salaAsb.substr(5));
+    const numBsb = parseInt(salaBsb.substr(5));
   
-    return numA - numB;
-  }
-
-  // ======================================= PDF ===========================================
-  logoURL = 'assets/icon/logo.png';
-  imprimirPdf() {
-    const doc = new jsPDF;
-
-    //añadir titulo
-    doc.setFontSize(25);
-    this.addLogo(doc);
-    doc.text('Reportes', 85, 105);
-
-    let y = 120; //Posición incial en y
-
-    this.reservations.forEach((reservations, index) => {
-      if (y > 250) {
-        doc.addPage();
-        y = 35;
-        doc.setFontSize(22);
-        doc.text('Reportes', 85, 22);
-        this.addLogoEsqui(doc);
-      }
-
-      //Sala
-      doc.setFontSize(16);
-      doc.text(`Sala: ${reservations.sala}`, 14, y);
-      y += 10; //Espaciado entre reservaciones
-
-      //Fecha y Horario
-      doc.setFontSize(12);
-      doc.text(`Fecha: ${reservations.date}`, 14, y)
-      y += 10;
-      doc.text(`Horario: ${reservations.horario}`, 14, y)
-      y += 10;
-
-      //Acompañantes
-      doc.text(`Acompañantes: ${reservations.students}`, 14, y)
-      y += 10;
-      doc.text('===========================================================', 14, y)
-      y += 10;
-    });
-
-    //Descargar el PDF
-    doc.save('Reportes.pdf')
-  }
-
-  private addLogo(doc: jsPDF) {
-    const img = new Image();
-    img.src = this.logoURL;
-    doc.addImage(img, 'PNG', 62, 5, 80, 80);
-  }
-  private addLogoEsqui(doc: jsPDF) {
-    const img = new Image();
-    img.src = this.logoURL;
-    doc.addImage(img, 'PNG', 150, 10, 40, 40);
+    return numAsb - numBsb;
   }
 }
